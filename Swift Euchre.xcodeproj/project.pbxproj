@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		203317941C0E6D7200FFD8C0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203317931C0E6D7200FFD8C0 /* main.swift */; };
+		20FAE5061C12AC2300C36D53 /* Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FAE5051C12AC2300C36D53 /* Cards.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +24,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		202884B61C0EC48B000E92EE /* Testing Lab 001.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Testing Lab 001.playground"; sourceTree = SOURCE_ROOT; };
 		203317901C0E6D7200FFD8C0 /* Swift Euchre */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Swift Euchre"; sourceTree = BUILT_PRODUCTS_DIR; };
 		203317931C0E6D7200FFD8C0 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		20FAE5051C12AC2300C36D53 /* Cards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				203317931C0E6D7200FFD8C0 /* main.swift */,
+				20FAE5051C12AC2300C36D53 /* Cards.swift */,
+				202884B61C0EC48B000E92EE /* Testing Lab 001.playground */,
 			);
 			path = "Swift Euchre";
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				203317941C0E6D7200FFD8C0 /* main.swift in Sources */,
+				20FAE5061C12AC2300C36D53 /* Cards.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +245,7 @@
 				203317991C0E6D7200FFD8C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
