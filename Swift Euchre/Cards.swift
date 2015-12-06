@@ -137,6 +137,23 @@ enum Suit: Int {
 		}
 	}
 	
+	func oppositeSuit() ->Suit {
+		switch self {
+		case .Clubs:
+			return .Spades
+		case Diamonds:
+			return .Hearts
+		case .Spades:
+			return .Clubs
+		case .Hearts:
+			return .Diamonds
+		default:
+			return self
+		}
+	}
+	
+	// These functions also have pass-throughs in the Card class
+	
 	func isSuit(suit: Suit) ->Bool {
 		return self == suit
 	}
@@ -180,7 +197,7 @@ enum Suit: Int {
 
 
 
-class card {
+class Card {
 	var rank: Rank
 	var suit: Suit
 	
@@ -205,11 +222,18 @@ class card {
 		return out
 	}
 	func shortName(trumpSuit: Suit?=nil) ->String {
-		var s: Character
+		var S: Character
 		let r = self.rank.shortName(trumpSuit != nil)
 		
-		s = p
-		return String(r) + String(s)
+		if self.rank.isValue((Rank).LeftBower) {
+			S = self.suit.oppositeSuit().shortName()
+		} else if self.isTrump() && trumpSuit != nil {
+			S = (trumpSuit?.shortName())!
+		} else {
+			S = self.suit.shortName()
+		}
+		
+		return String(r) + String(S)
 	}
 	
 	
