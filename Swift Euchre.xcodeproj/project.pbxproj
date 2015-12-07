@@ -8,7 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		203317941C0E6D7200FFD8C0 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203317931C0E6D7200FFD8C0 /* main.swift */; };
-		20FAE5061C12AC2300C36D53 /* Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FAE5051C12AC2300C36D53 /* Cards.swift */; };
+		205B86341C1435F8003557D5 /* A_Swift_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205B86331C1435F8003557D5 /* A_Swift_Test.swift */; };
+		205B86391C143601003557D5 /* CardTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205B862B1C143514003557D5 /* CardTest.swift */; };
+		205B863B1C15413D003557D5 /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205B863A1C15413D003557D5 /* Hand.swift */; };
+		205B863D1C154145003557D5 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205B863C1C154145003557D5 /* Deck.swift */; };
+		205B86401C15593B003557D5 /* Rank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205B863F1C15593B003557D5 /* Rank.swift */; };
+		205B86421C155943003557D5 /* Suit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205B86411C155943003557D5 /* Suit.swift */; };
+		20FAE5061C12AC2300C36D53 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FAE5051C12AC2300C36D53 /* Card.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,11 +33,26 @@
 		202884B61C0EC48B000E92EE /* Testing Lab 001.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "Testing Lab 001.playground"; sourceTree = SOURCE_ROOT; };
 		203317901C0E6D7200FFD8C0 /* Swift Euchre */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Swift Euchre"; sourceTree = BUILT_PRODUCTS_DIR; };
 		203317931C0E6D7200FFD8C0 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		20FAE5051C12AC2300C36D53 /* Cards.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
+		205B862B1C143514003557D5 /* CardTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardTest.swift; path = Testing/CardTest.swift; sourceTree = SOURCE_ROOT; };
+		205B86311C1435F8003557D5 /* A Swift Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "A Swift Test.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		205B86331C1435F8003557D5 /* A_Swift_Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A_Swift_Test.swift; sourceTree = "<group>"; };
+		205B86351C1435F8003557D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		205B863A1C15413D003557D5 /* Hand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
+		205B863C1C154145003557D5 /* Deck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
+		205B863F1C15593B003557D5 /* Rank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rank.swift; sourceTree = "<group>"; };
+		205B86411C155943003557D5 /* Suit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Suit.swift; sourceTree = "<group>"; };
+		20FAE5051C12AC2300C36D53 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		2033178D1C0E6D7200FFD8C0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		205B862E1C1435F7003557D5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -44,7 +65,9 @@
 		203317871C0E6D7100FFD8C0 = {
 			isa = PBXGroup;
 			children = (
+				205B862A1C1434D9003557D5 /* Testing */,
 				203317921C0E6D7200FFD8C0 /* Swift Euchre */,
+				205B86321C1435F8003557D5 /* A Swift Test */,
 				203317911C0E6D7200FFD8C0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				203317901C0E6D7200FFD8C0 /* Swift Euchre */,
+				205B86311C1435F8003557D5 /* A Swift Test.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -60,11 +84,41 @@
 		203317921C0E6D7200FFD8C0 /* Swift Euchre */ = {
 			isa = PBXGroup;
 			children = (
+				205B863E1C155919003557D5 /* Card Core */,
+				205B863A1C15413D003557D5 /* Hand.swift */,
 				203317931C0E6D7200FFD8C0 /* main.swift */,
-				20FAE5051C12AC2300C36D53 /* Cards.swift */,
 				202884B61C0EC48B000E92EE /* Testing Lab 001.playground */,
 			);
 			path = "Swift Euchre";
+			sourceTree = "<group>";
+		};
+		205B862A1C1434D9003557D5 /* Testing */ = {
+			isa = PBXGroup;
+			children = (
+				205B862B1C143514003557D5 /* CardTest.swift */,
+			);
+			name = Testing;
+			path = "Swift Euchre";
+			sourceTree = "<group>";
+		};
+		205B86321C1435F8003557D5 /* A Swift Test */ = {
+			isa = PBXGroup;
+			children = (
+				205B86331C1435F8003557D5 /* A_Swift_Test.swift */,
+				205B86351C1435F8003557D5 /* Info.plist */,
+			);
+			path = "A Swift Test";
+			sourceTree = "<group>";
+		};
+		205B863E1C155919003557D5 /* Card Core */ = {
+			isa = PBXGroup;
+			children = (
+				20FAE5051C12AC2300C36D53 /* Card.swift */,
+				205B863C1C154145003557D5 /* Deck.swift */,
+				205B863F1C15593B003557D5 /* Rank.swift */,
+				205B86411C155943003557D5 /* Suit.swift */,
+			);
+			name = "Card Core";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -87,6 +141,23 @@
 			productReference = 203317901C0E6D7200FFD8C0 /* Swift Euchre */;
 			productType = "com.apple.product-type.tool";
 		};
+		205B86301C1435F7003557D5 /* A Swift Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 205B86361C1435F8003557D5 /* Build configuration list for PBXNativeTarget "A Swift Test" */;
+			buildPhases = (
+				205B862D1C1435F7003557D5 /* Sources */,
+				205B862E1C1435F7003557D5 /* Frameworks */,
+				205B862F1C1435F7003557D5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "A Swift Test";
+			productName = "A Swift Test";
+			productReference = 205B86311C1435F8003557D5 /* A Swift Test.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -98,6 +169,9 @@
 				ORGANIZATIONNAME = "Euchre US!";
 				TargetAttributes = {
 					2033178F1C0E6D7200FFD8C0 = {
+						CreatedOnToolsVersion = 7.1.1;
+					};
+					205B86301C1435F7003557D5 = {
 						CreatedOnToolsVersion = 7.1.1;
 					};
 				};
@@ -115,17 +189,41 @@
 			projectRoot = "";
 			targets = (
 				2033178F1C0E6D7200FFD8C0 /* Swift Euchre */,
+				205B86301C1435F7003557D5 /* A Swift Test */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		205B862F1C1435F7003557D5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2033178C1C0E6D7200FFD8C0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				205B86421C155943003557D5 /* Suit.swift in Sources */,
+				205B863D1C154145003557D5 /* Deck.swift in Sources */,
 				203317941C0E6D7200FFD8C0 /* main.swift in Sources */,
-				20FAE5061C12AC2300C36D53 /* Cards.swift in Sources */,
+				20FAE5061C12AC2300C36D53 /* Card.swift in Sources */,
+				205B863B1C15413D003557D5 /* Hand.swift in Sources */,
+				205B86401C15593B003557D5 /* Rank.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		205B862D1C1435F7003557D5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				205B86341C1435F8003557D5 /* A_Swift_Test.swift in Sources */,
+				205B86391C143601003557D5 /* CardTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,6 +324,28 @@
 			};
 			name = Release;
 		};
+		205B86371C1435F8003557D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "A Swift Test/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Euchre-US.A-Swift-Test";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		205B86381C1435F8003557D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "A Swift Test/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Euchre-US.A-Swift-Test";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -243,6 +363,15 @@
 			buildConfigurations = (
 				203317981C0E6D7200FFD8C0 /* Debug */,
 				203317991C0E6D7200FFD8C0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		205B86361C1435F8003557D5 /* Build configuration list for PBXNativeTarget "A Swift Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				205B86371C1435F8003557D5 /* Debug */,
+				205B86381C1435F8003557D5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

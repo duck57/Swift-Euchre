@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>A Swift Test.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>Swift Euchre.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -13,6 +18,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>2033178F1C0E6D7200FFD8C0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>205B86301C1435F7003557D5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
