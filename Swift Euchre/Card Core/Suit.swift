@@ -13,7 +13,7 @@ public enum Suit: Int {
 	case Clubs, Diamonds, Spades, Hearts
 	case Trump
 	
-	func dispName() ->String {
+	func dispName() -> String {
 		switch self {
 		case .Joker:
 			return "Joker"
@@ -30,7 +30,7 @@ public enum Suit: Int {
 		}
 	}
 	
-	func shortName() ->Character {
+	func shortName() -> Character {
 		switch self {
 		case .Joker:
 			return "🃏"
@@ -47,7 +47,7 @@ public enum Suit: Int {
 		}
 	}
 	
-	func oppositeSuit() ->Suit {
+	func oppositeSuit() -> Suit {
 		switch self {
 		case .Clubs:
 			return .Spades
@@ -64,39 +64,39 @@ public enum Suit: Int {
 	
 	// These functions also have pass-throughs in the Card class
 	
-	func isSuit(suit: Suit) ->Bool {
+	func isSuit(suit: Suit) -> Bool {
 		return self == suit
 	}
 	
-	func isTrump() ->Bool {
+	func isTrump() -> Bool {
 		return isSuit(.Trump)
 	}
-	func isJoker() ->Bool {
+	func isJoker() -> Bool {
 		return isSuit(.Joker)
 	}
 	
-	func isRed() ->Bool {
+	func isRed() -> Bool {
 		return isSuit(.Diamonds) || isSuit(.Hearts)
 	}
-	func isBlack() ->Bool {
+	func isBlack() -> Bool {
 		return isSuit(.Clubs) || isSuit(.Spades)
 	}
 	
-	func isNotTrump() ->Bool {
+	func isNotTrump() -> Bool {
 		return !isTrump()
 	}
-	func isPlayable() ->Bool {
+	func isPlayable() -> Bool {
 		return !isJoker()
 	}
 	
-	func isNormalSuit() ->Bool {
+	func isNormalSuit() -> Bool {
 		if !isTrump() && !isJoker() {
 			return true
 		} else {
 			return false
 		}
 	}
-	func isUnusualSuit() ->Bool {
+	func isUnusualSuit() -> Bool {
 		if isTrump() || isJoker() {
 			return true
 		} else {

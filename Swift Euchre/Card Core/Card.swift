@@ -12,12 +12,12 @@ public class Card: Comparable, CustomStringConvertible {
 	var rank: Rank
 	var suit: Suit
 	
-	init(r: Rank, s: Suit) {
-		rank = r
-		suit = s
+	init(rnk: Rank, sut: Suit) {
+		rank = rnk
+		suit = sut
 	}
-	convenience init(r: Int, s: Int) {
-		self.init(r: Rank(rawValue: r)!, s: Suit(rawValue: s)!)
+	convenience init(rnk: Int, sut: Int) {
+		self.init(rnk: Rank(rawValue: rnk)!, sut: Suit(rawValue: sut)!)
 	}
 	
 	//
@@ -25,7 +25,7 @@ public class Card: Comparable, CustomStringConvertible {
 	//
 	
 	// Trump-aware printout
-	func longName(var trumpSuit: Suit?=nil) ->String {
+	func longName(var trumpSuit: Suit?=nil) -> String {
 		var out = self.rank.dispName()
 		if isBower() {} else if self.isTrump() {
 			trumpSuit = trumpSuit ?? (Suit).Trump
@@ -35,7 +35,7 @@ public class Card: Comparable, CustomStringConvertible {
 		}
 		return out
 	}
-	func shortName(var trumpSuit: Suit?=nil) ->String {
+	func shortName(var trumpSuit: Suit?=nil) -> String {
 		var S: Character
 		let r = self.rank.shortName(trumpSuit != nil)
 		
@@ -93,8 +93,12 @@ public class Card: Comparable, CustomStringConvertible {
 		}
 	}
 	
-	func isSameCard(compCard: Card) ->Bool {
+	func isSameCard(compCard: Card) -> Bool {
 		return compCard.isSuit(self.suit) && compCard.isValue(self.rank)
+	}
+	
+	func beats(compCard: Card, compFunction: (Card, Card) -> Bool) -> Bool {
+		return compFunction(compCard, self)
 	}
 	
 	//
@@ -102,62 +106,79 @@ public class Card: Comparable, CustomStringConvertible {
 	//
 	
 	// Rank
-	func isAce() ->Bool {
+	func isAce() -> Bool {
 		return self.rank.isAce()
 	}
-	func is2() ->Bool {
+	func is2() -> Bool {
 		return self.rank.is2()
 	}
-	func isBower() ->Bool{
+	func isBower() -> Bool{
 		return self.rank.isBower()
 	}
-	func isValue(cmpVal: Rank)->Bool {
+	func isValue(cmpVal: Rank)-> Bool {
 		return self.rank.isValue(cmpVal)
 	}
-	func isNotVal(cmpVal: Rank) ->Bool {
+	func isNotVal(cmpVal: Rank) -> Bool {
 		return self.rank.isNotValue(cmpVal)
 	}
 	
 	// Suit
-	func isRed() ->Bool {
+	func isRed() -> Bool {
 		return self.suit.isRed()
 	}
-	func isBlack() ->Bool {
+	func isBlack() -> Bool {
 		return self.suit.isBlack()
 	}
-	func isSuit(chkSut: Suit) ->Bool {
+	func isSuit(chkSut: Suit) -> Bool {
 		return self.suit.isSuit(chkSut)
 	}
-	func isTrump() ->Bool {
+	func isTrump() -> Bool {
 		return self.suit.isTrump()
 	}
-	func isNotTrump() ->Bool {
+	func isNotTrump() -> Bool {
 		return self.suit.isNotTrump()
 	}
-	func isJoker() ->Bool {
+	func isJoker() -> Bool {
 		return self.suit.isJoker()
 	}
-	func isNotJoker() ->Bool { // If you have strong feelings one way or the other about this, let me know which name you prefer
+	func isNotJoker() -> Bool { // If you have strong feelings one way or the other about this, let me know which name you prefer: isNotJoker or isPlayable
 		return self.suit.isPlayable()
 	}
-	func isNormalSuit() ->Bool {
+	func isNormalSuit() -> Bool {
 		return self.suit.isNormalSuit()
 	}
-	func isSpecialSuit() ->Bool { // Again, which name is better?
+	func isSpecialSuit() -> Bool { // Again, which name is better: isSpecialSuit or isUnusualSuit?
 		return self.suit.isUnusualSuit()
 	}
-	func followsSuit(chkSuit: Suit) ->Bool{ // This should be more useful for scoring
-		return self.isSuit(chkSuit) || self.isTrump()
+	func followsSuit(chkSuit: Suit) -> Bool{ // This should be more useful for scoring
+		return self.isSuit(chkSuit) || self.isTrump() // don't use this when evaluating player hands
 	}
 }
 
 // For Comparable
-public func <(left: Card, right: Card) -> Bool {
-	if left.suit < right.suit {
-		return true
-	}
-	return left.rank < right.rank
+public func <(leftCard: Card, rightCard: Card) -> Bool {
+	// Swap which of the below lines is commented to change the default sorting method
+	return SuitSorted(leftCard, rightCard)
+	//return RankSorted(leftCard, rightCard)
 }
-public func ==(left: Card, right: Card) -> Bool {
-	return left.isSameCard(right)
+public func ==(leftCard: Card, rightCard: Card) -> Bool {
+	return leftCard.isSameCard(rightCard)
+}
+
+
+// Two implementations of sorting
+public func SuitSorted(leftCard: Card, _ rightCard: Card) -> Bool {
+	// Compare suit first.
+	if leftCard.suit != rightCard.suit {
+		return leftCard.suit < rightCard.suit
+	}
+	// Same suit, need to sort by rank.
+	return leftCard.rank < rightCard.rank
+}
+// Same as above but with Rank and Suit swapped
+public func RankSorted(leftCard: Card, _ rightCard: Card) -> Bool {
+	if leftCard.rank != rightCard.rank {
+		return leftCard.rank < rightCard.rank
+	}
+	return leftCard.suit < rightCard.suit
 }

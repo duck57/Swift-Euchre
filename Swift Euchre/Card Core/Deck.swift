@@ -13,7 +13,7 @@ public var deck = [Card]()
 func makeEuchreDeck() {
 	for suit in 1...4 {
 		for rank in 9...14 {
-			deck.append(Card.init(r: rank, s: suit))
+			deck.append(Card.init(rnk: rank, sut: suit))
 		}
 	}
 }
@@ -32,6 +32,19 @@ extension CollectionType {
 	}
 }
 
+extension CollectionType where Generator.Element == Card {
+	func sortedBySuit() -> [Generator.Element] {
+		var list = Array(self)
+		list.suitSort()
+		return list
+	}
+	func sortedByRank() -> [Generator.Element] {
+		var list = Array(self)
+		list.rankSort()
+		return list
+	}
+}
+
 extension MutableCollectionType where Index == Int {
 	/// Shuffle the elements of `self` in-place.
 	mutating func shuffleInPlace() {
@@ -43,5 +56,14 @@ extension MutableCollectionType where Index == Int {
 			guard i != j else { continue }
 			swap(&self[i], &self[j])
 		}
+	}
+}
+
+extension MutableCollectionType where Generator.Element == Card {
+	mutating func suitSort() {
+		self.sortInPlace({SuitSorted($0,$1)})
+	}
+	mutating func rankSort() {
+		self.sortInPlace({RankSorted($0,$1)})
 	}
 }

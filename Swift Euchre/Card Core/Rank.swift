@@ -14,7 +14,7 @@ public enum Rank: Int {
 	case Deuce, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten
 	case Jack, Queen, King, HiAce, LeftBower, RightBower
 	
-	func dispName() ->String {
+	func dispName() -> String {
 		switch self {
 		case .LoAce:
 			return "Ace"
@@ -53,7 +53,7 @@ public enum Rank: Int {
 		}
 	}
 	
-	func shortName(trumpAware: Bool?=nil) ->Character {
+	func shortName(trumpAware: Bool?=nil) -> Character {
 		if trumpAware == true && (self == .LeftBower || self  == .RightBower) {
 			return "J"
 		}
@@ -79,22 +79,22 @@ public enum Rank: Int {
 		}
 	}
 	
-	func isValue(value: Rank) ->Bool {
+	func isValue(value: Rank) -> Bool {
 		return self == value
 	}
-	func isNotValue(value: Rank) ->Bool {
+	func isNotValue(value: Rank) -> Bool {
 		return !isValue(value)
 	}
 	
-	func isAce() ->Bool {
+	func isAce() -> Bool {
 		return self.isValue(.LoAce) || self.isValue(.HiAce)
 	}
 	
-	func is2() ->Bool {
+	func is2() -> Bool {
 		return self.isValue(.Deuce) || self.isValue(.Two)
 	}
 	
-	func isBower() ->Bool {
+	func isBower() -> Bool {
 		return self.isValue(.LeftBower) || self.isValue(.RightBower)
 	}
 }
