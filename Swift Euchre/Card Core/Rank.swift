@@ -53,6 +53,7 @@ public enum Rank: Int {
 		}
 	}
 	
+	// Leaving in trumpAware in case it's useful to have that hard-coded here.
 	func shortName(trumpAware: Bool?=nil) -> Character {
 		if trumpAware == true && (self == .LeftBower || self  == .RightBower) {
 			return "J"

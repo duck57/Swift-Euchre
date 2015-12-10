@@ -11,10 +11,15 @@ import Foundation
 public class Card: Comparable, CustomStringConvertible {
 	var rank: Rank
 	var suit: Suit
+	let displayRank: Rank
+	let displaySuit: Suit
 	
 	init(rnk: Rank, sut: Suit) {
 		rank = rnk
 		suit = sut
+		//the display versions require fewer special functions and considerations
+		displayRank = rank
+		displaySuit = suit
 	}
 	convenience init(rnk: Int, sut: Int) {
 		self.init(rnk: Rank(rawValue: rnk)!, sut: Suit(rawValue: sut)!)
@@ -24,7 +29,7 @@ public class Card: Comparable, CustomStringConvertible {
 	// Naming
 	//
 	
-	// Trump-aware printout
+	// Long Name: better for debugging, since relies on the "actual" value of the card
 	func longName(var trumpSuit: Suit?=nil) -> String {
 		var out = self.rank.dispName()
 		if isBower() {} else if self.isTrump() {
@@ -35,20 +40,11 @@ public class Card: Comparable, CustomStringConvertible {
 		}
 		return out
 	}
-	func shortName(var trumpSuit: Suit?=nil) -> String {
-		var S: Character
-		let r = self.rank.shortName(trumpSuit != nil)
-		
-		if self.rank.isValue((Rank).LeftBower) {
-			S = self.suit.oppositeSuit().shortName()
-		} else if self.isTrump() {
-			trumpSuit = trumpSuit ?? (Suit).Trump
-			S = trumpSuit!.shortName()
-		} else {
-			S = self.suit.shortName()
-		}
-		
-		return String(r) + String(S)
+	// Human-readable form for 2-character display
+	func shortName(trumpSuit: Suit?=nil) -> String {
+		let S = self.displaySuit.shortName()
+		let R = self.displayRank.shortName()
+		return String(R) + String(S)
 	}
 	
 	// Fulfill CustomStringConvertible
@@ -166,7 +162,7 @@ public func ==(leftCard: Card, rightCard: Card) -> Bool {
 }
 
 
-// Two implementations of sorting
+// Better implementations of sorting
 public func SuitSorted(leftCard: Card, _ rightCard: Card) -> Bool {
 	// Compare suit first.
 	if leftCard.suit != rightCard.suit {
@@ -182,3 +178,63 @@ public func RankSorted(leftCard: Card, _ rightCard: Card) -> Bool {
 	}
 	return leftCard.suit < rightCard.suit
 }
+
+public class cardCollection {
+	var collective = [Card]()
+	
+	func suitSort() {
+		self.collective.sortInPlace({SuitSorted($0,$1)})
+	}
+	func rankSort() {
+		self.collective.sortInPlace({RankSorted($0,$1)})
+	}
+}
+
+
+
+extension CollectionType {
+	/// Return a copy of `self` with its elements shuffled
+	func shuffle() -> [Generator.Element] {
+		var list = Array(self)
+		list.shuffleInPlace()
+		return list
+	}
+}
+
+/*
+extension CollectionType where Generator.Element == Card {
+	func sortedBySuit() -> [Generator.Element] {
+		var list = Array(self)
+		list.suitSort()
+		return list
+	}
+	func sortedByRank() -> [Generator.Element] {
+		var list = Array(self)
+		list.rankSort()
+		return list
+	}
+}*/
+
+extension MutableCollectionType where Index == Int {
+	/// Shuffle the elements of `self` in-place.
+	mutating func shuffleInPlace() {
+		// empty and single-element collections don't shuffle
+		if count < 2 { return }
+		
+		for i in 0..<count - 1 {
+			let j = Int(arc4random_uniform(UInt32(count - i))) + i
+			guard i != j else { continue }
+			swap(&self[i], &self[j])
+		}
+	}
+}
+
+/*
+extension MutableCollectionType where Generator.Element == Card {
+	mutating func suitSort() {
+		self.sortInPlace({SuitSorted($0,$1)})
+	}
+	mutating func rankSort() {
+		self.sortInPlace({RankSorted($0,$1)})
+	}
+}*/
