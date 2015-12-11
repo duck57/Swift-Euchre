@@ -13,6 +13,8 @@ public enum Rank: Int {
 	case LoAce = 0
 	case Deuce, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten
 	case Jack, Queen, King, HiAce, LeftBower, RightBower
+	case invalid = -1
+	case blank = -2
 	
 	func dispName() -> String {
 		switch self {
@@ -50,6 +52,8 @@ public enum Rank: Int {
 			return "Left Bower"
 		case .RightBower:
 			return "Right Bower"
+		default:
+			return ""
 		}
 	}
 	
@@ -88,15 +92,22 @@ public enum Rank: Int {
 	}
 	
 	func isAce() -> Bool {
-		return self.isValue(.LoAce) || self.isValue(.HiAce)
+		return isValue(.LoAce) || isValue(.HiAce)
 	}
 	
 	func is2() -> Bool {
-		return self.isValue(.Deuce) || self.isValue(.Two)
+		return isValue(.Deuce) || isValue(.Two)
 	}
 	
 	func isBower() -> Bool {
-		return self.isValue(.LeftBower) || self.isValue(.RightBower)
+		return isValue(.LeftBower) || isValue(.RightBower)
+	}
+	
+	func isValid() -> Bool {
+		return !invalidRank()
+	}
+	func invalidRank() -> Bool {
+		return isValue(.invalid) || isValue(.Blank)
 	}
 }
 

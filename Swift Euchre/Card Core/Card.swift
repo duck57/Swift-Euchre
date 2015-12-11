@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Card: Comparable, CustomStringConvertible {
+public struct Card: Comparable, CustomStringConvertible {
 	var rank: Rank
 	var suit: Suit
 	let displayRank: Rank
@@ -21,7 +21,7 @@ public class Card: Comparable, CustomStringConvertible {
 		displayRank = rank
 		displaySuit = suit
 	}
-	convenience init(rnk: Int, sut: Int) {
+	init(rnk: Int, sut: Int) {
 		self.init(rnk: Rank(rawValue: rnk)!, sut: Suit(rawValue: sut)!)
 	}
 	
@@ -49,20 +49,20 @@ public class Card: Comparable, CustomStringConvertible {
 	
 	// Fulfill CustomStringConvertible
 	public var description: String {
-		return self.longName()
+		return longName()
 	}
 	
 	
 	//
 	// Card functions
 	//
-	func changeRank(newRank: Rank) {
-		self.rank = newRank
+	mutating func changeRank(newRank: Rank) {
+		rank = newRank
 	}
-	func changeSuit(newSuit: Suit) {
-		self.suit = newSuit
+	mutating func changeSuit(newSuit: Suit) {
+		suit = newSuit
 	}
-	func makeTrump(var trumpSuit: Suit?=nil) {
+	mutating func makeTrump(var trumpSuit: Suit?=nil) {
 		// Pass in a suit to add a safeguard
 		// Don't pass in a suit for force the card to trump
 		if trumpSuit == nil {
@@ -82,15 +82,15 @@ public class Card: Comparable, CustomStringConvertible {
 			changeRank((Rank).LeftBower)
 		}
 	}
-	func revertFromTrump(trumpSuit: Suit) {
+	mutating func revertFromTrump(trumpSuit: Suit) {
 		// Safeguard to prevet this from overwriting all cards when looping through a hand
-		if self.isTrump() {
+		if isTrump() {
 			changeSuit(trumpSuit)
 		}
 	}
 	
 	func isSameCard(compCard: Card) -> Bool {
-		return compCard.isSuit(self.suit) && compCard.isValue(self.rank)
+		return compCard.isSuit(suit) && compCard.isValue(rank)
 	}
 	
 	func beats(compCard: Card, compFunction: (Card, Card) -> Bool) -> Bool {
@@ -103,19 +103,19 @@ public class Card: Comparable, CustomStringConvertible {
 	
 	// Rank
 	func isAce() -> Bool {
-		return self.rank.isAce()
+		return rank.isAce()
 	}
 	func is2() -> Bool {
-		return self.rank.is2()
+		return rank.is2()
 	}
 	func isBower() -> Bool{
-		return self.rank.isBower()
+		return rank.isBower()
 	}
 	func isValue(cmpVal: Rank)-> Bool {
-		return self.rank.isValue(cmpVal)
+		return rank.isValue(cmpVal)
 	}
 	func isNotVal(cmpVal: Rank) -> Bool {
-		return self.rank.isNotValue(cmpVal)
+		return rank.isNotValue(cmpVal)
 	}
 	
 	// Suit
@@ -123,31 +123,35 @@ public class Card: Comparable, CustomStringConvertible {
 		return self.suit.isRed()
 	}
 	func isBlack() -> Bool {
-		return self.suit.isBlack()
+		return suit.isBlack()
 	}
 	func isSuit(chkSut: Suit) -> Bool {
-		return self.suit.isSuit(chkSut)
+		return suit.isSuit(chkSut)
 	}
 	func isTrump() -> Bool {
-		return self.suit.isTrump()
+		return suit.isTrump()
 	}
 	func isNotTrump() -> Bool {
-		return self.suit.isNotTrump()
+		return suit.isNotTrump()
 	}
 	func isJoker() -> Bool {
-		return self.suit.isJoker()
+		return suit.isJoker()
 	}
 	func isNotJoker() -> Bool { // If you have strong feelings one way or the other about this, let me know which name you prefer: isNotJoker or isPlayable
-		return self.suit.isPlayable()
+		return suit.isPlayable()
 	}
 	func isNormalSuit() -> Bool {
-		return self.suit.isNormalSuit()
+		return suit.isNormalSuit()
 	}
 	func isSpecialSuit() -> Bool { // Again, which name is better: isSpecialSuit or isUnusualSuit?
-		return self.suit.isUnusualSuit()
+		return suit.isUnusualSuit()
 	}
 	func followsSuit(chkSuit: Suit) -> Bool{ // This should be more useful for scoring
-		return self.isSuit(chkSuit) || self.isTrump() // don't use this when evaluating player hands
+		return isSuit(chkSuit) || self.isTrump() // don't use this when evaluating player hands
+	}
+	
+	func isValidCard() -> Bool {
+		return isNotJoker() && rank.isValid()
 	}
 }
 
@@ -179,14 +183,44 @@ public func RankSorted(leftCard: Card, _ rightCard: Card) -> Bool {
 	return leftCard.suit < rightCard.suit
 }
 
-public class cardCollection {
+// Sorts trump cards as if they were members of the suit that was declared trump
+public func DisplaySorted(leftCard: Card, _ rightCard: Card) -> Bool {
+	if leftCard.displaySuit != rightCard.displaySuit {
+		return leftCard.displaySuit < rightCard.displaySuit
+	}
+	return leftCard.rank < rightCard.rank
+}
+
+// Every player's Hand will probably be a vanilla CardCollection
+// The Deck will be a special CardCollection with its own 
+extension CardCollection: CollectionType {
 	var collective = [Card]()
 	
+	func sort(sortingFun: (Card, Card) -> Bool) {
+		collective.sortInPlace({sortingFun($0,$1)})
+	}
+	
 	func suitSort() {
-		self.collective.sortInPlace({SuitSorted($0,$1)})
+		sort(SuitSorted)
 	}
 	func rankSort() {
-		self.collective.sortInPlace({RankSorted($0,$1)})
+		sort(RankSorted)
+	}
+	func displaySort() {
+		sort(DisplaySorted)
+	}
+	func sortInPlace() {
+		displaySort() // Replace with your preferred sorting method
+	}
+	
+	func append(newCard: Card) {
+		collective.append(newCard)
+	}
+	func remove(whereAt: Int) {
+		collective.removeAtIndex(whereAt)
+	}
+	func remover(listing: Range<Int>) {
+		collective.removeRange(listing)
 	}
 }
 

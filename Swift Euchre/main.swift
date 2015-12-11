@@ -12,7 +12,7 @@ print("Welcome to Swift Euchre!")
 
 
 makeDoubleEuchreDeck()
-deck.sortInPlace({RankSorted($0,$1)})
+deck.sortInPlace()
 
 for card in deck {
 	print(card)
