@@ -11,8 +11,8 @@ import Foundation
 print("Welcome to Swift Euchre!")
 
 
-makeDoubleEuchreDeck()
-deck.sortInPlace()
+var deck = makeDoubleEuchreDeck()
+deck.sortByRank()
 
 for card in deck {
 	print(card)

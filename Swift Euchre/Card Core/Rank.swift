@@ -107,7 +107,7 @@ public enum Rank: Int {
 		return !invalidRank()
 	}
 	func invalidRank() -> Bool {
-		return isValue(.invalid) || isValue(.Blank)
+		return isValue(.invalid) || isValue(.blank)
 	}
 }
 

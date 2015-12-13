@@ -160,6 +160,7 @@ public func <(leftCard: Card, rightCard: Card) -> Bool {
 	// Swap which of the below lines is commented to change the default sorting method
 	return SuitSorted(leftCard, rightCard)
 	//return RankSorted(leftCard, rightCard)
+	//return DisplaySorted(leftCard, rightCard)
 }
 public func ==(leftCard: Card, rightCard: Card) -> Bool {
 	return leftCard.isSameCard(rightCard)
@@ -190,85 +191,3 @@ public func DisplaySorted(leftCard: Card, _ rightCard: Card) -> Bool {
 	}
 	return leftCard.rank < rightCard.rank
 }
-
-// Every player's Hand will probably be a vanilla CardCollection
-// The Deck will be a special CardCollection with its own 
-extension CardCollection: CollectionType {
-	var collective = [Card]()
-	
-	func sort(sortingFun: (Card, Card) -> Bool) {
-		collective.sortInPlace({sortingFun($0,$1)})
-	}
-	
-	func suitSort() {
-		sort(SuitSorted)
-	}
-	func rankSort() {
-		sort(RankSorted)
-	}
-	func displaySort() {
-		sort(DisplaySorted)
-	}
-	func sortInPlace() {
-		displaySort() // Replace with your preferred sorting method
-	}
-	
-	func append(newCard: Card) {
-		collective.append(newCard)
-	}
-	func remove(whereAt: Int) {
-		collective.removeAtIndex(whereAt)
-	}
-	func remover(listing: Range<Int>) {
-		collective.removeRange(listing)
-	}
-}
-
-
-
-extension CollectionType {
-	/// Return a copy of `self` with its elements shuffled
-	func shuffle() -> [Generator.Element] {
-		var list = Array(self)
-		list.shuffleInPlace()
-		return list
-	}
-}
-
-/*
-extension CollectionType where Generator.Element == Card {
-	func sortedBySuit() -> [Generator.Element] {
-		var list = Array(self)
-		list.suitSort()
-		return list
-	}
-	func sortedByRank() -> [Generator.Element] {
-		var list = Array(self)
-		list.rankSort()
-		return list
-	}
-}*/
-
-extension MutableCollectionType where Index == Int {
-	/// Shuffle the elements of `self` in-place.
-	mutating func shuffleInPlace() {
-		// empty and single-element collections don't shuffle
-		if count < 2 { return }
-		
-		for i in 0..<count - 1 {
-			let j = Int(arc4random_uniform(UInt32(count - i))) + i
-			guard i != j else { continue }
-			swap(&self[i], &self[j])
-		}
-	}
-}
-
-/*
-extension MutableCollectionType where Generator.Element == Card {
-	mutating func suitSort() {
-		self.sortInPlace({SuitSorted($0,$1)})
-	}
-	mutating func rankSort() {
-		self.sortInPlace({RankSorted($0,$1)})
-	}
-}*/

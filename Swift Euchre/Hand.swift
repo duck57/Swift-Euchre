@@ -9,10 +9,3 @@
 import Foundation
 
 var hand = [Card]()
-
-func humanSort(trumpSuit: Suit) {
-	for card in hand {
-		card.revertFromTrump(trumpSuit)
-	}
-	hand.sortInPlace()
-}
