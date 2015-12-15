@@ -16,6 +16,7 @@
 		205B86421C155943003557D5 /* Suit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205B86411C155943003557D5 /* Suit.swift */; };
 		205B86441C16201F003557D5 /* String-Bean Testin'.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205B86431C16201F003557D5 /* String-Bean Testin'.swift */; };
 		207CCA031C1CE9AC0019E028 /* CardCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207CCA021C1CE9AC0019E028 /* CardCollection.swift */; };
+		207CCA051C1FF8760019E028 /* Trick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207CCA041C1FF8750019E028 /* Trick.swift */; };
 		20FAE5061C12AC2300C36D53 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FAE5051C12AC2300C36D53 /* Card.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,12 +40,13 @@
 		205B86311C1435F8003557D5 /* A Swift Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "A Swift Test.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		205B86331C1435F8003557D5 /* A_Swift_Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A_Swift_Test.swift; sourceTree = "<group>"; };
 		205B86351C1435F8003557D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		205B863A1C15413D003557D5 /* Hand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
+		205B863A1C15413D003557D5 /* Hand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Hand.swift; path = "Card Core/Hand.swift"; sourceTree = "<group>"; };
 		205B863C1C154145003557D5 /* Deck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Deck.swift; path = "Card Core/Deck.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		205B863F1C15593B003557D5 /* Rank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Rank.swift; path = "Card Core/Rank.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		205B86411C155943003557D5 /* Suit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Suit.swift; path = "Card Core/Suit.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		205B86431C16201F003557D5 /* String-Bean Testin'.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String-Bean Testin'.swift"; path = "Testing/String-Bean Testin'.swift"; sourceTree = SOURCE_ROOT; };
 		207CCA021C1CE9AC0019E028 /* CardCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardCollection.swift; path = "Card Core/CardCollection.swift"; sourceTree = "<group>"; };
+		207CCA041C1FF8750019E028 /* Trick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Trick.swift; path = "Card Core/Trick.swift"; sourceTree = "<group>"; };
 		20FAE5051C12AC2300C36D53 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; name = Card.swift; path = "Card Core/Card.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
@@ -88,8 +90,8 @@
 		203317921C0E6D7200FFD8C0 /* Swift Euchre */ = {
 			isa = PBXGroup;
 			children = (
+				207CCA061C1FF88F0019E028 /* Controls */,
 				205B863E1C155919003557D5 /* Card Core */,
-				205B863A1C15413D003557D5 /* Hand.swift */,
 				203317931C0E6D7200FFD8C0 /* main.swift */,
 			);
 			path = "Swift Euchre";
@@ -119,12 +121,21 @@
 			isa = PBXGroup;
 			children = (
 				20FAE5051C12AC2300C36D53 /* Card.swift */,
-				205B863C1C154145003557D5 /* Deck.swift */,
 				207CCA021C1CE9AC0019E028 /* CardCollection.swift */,
+				205B863C1C154145003557D5 /* Deck.swift */,
+				205B863A1C15413D003557D5 /* Hand.swift */,
 				205B863F1C15593B003557D5 /* Rank.swift */,
 				205B86411C155943003557D5 /* Suit.swift */,
+				207CCA041C1FF8750019E028 /* Trick.swift */,
 			);
 			name = "Card Core";
+			sourceTree = "<group>";
+		};
+		207CCA061C1FF88F0019E028 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controls;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,6 +229,7 @@
 				205B86421C155943003557D5 /* Suit.swift in Sources */,
 				205B863D1C154145003557D5 /* Deck.swift in Sources */,
 				203317941C0E6D7200FFD8C0 /* main.swift in Sources */,
+				207CCA051C1FF8760019E028 /* Trick.swift in Sources */,
 				207CCA031C1CE9AC0019E028 /* CardCollection.swift in Sources */,
 				20FAE5061C12AC2300C36D53 /* Card.swift in Sources */,
 				205B863B1C15413D003557D5 /* Hand.swift in Sources */,

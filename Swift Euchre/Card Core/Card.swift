@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Card: Comparable, CustomStringConvertible {
+public struct Card: Comparable {
 	var rank: Rank
 	var suit: Suit
 	let displayRank: Rank
@@ -24,34 +24,6 @@ public struct Card: Comparable, CustomStringConvertible {
 	init(rnk: Int, sut: Int) {
 		self.init(rnk: Rank(rawValue: rnk)!, sut: Suit(rawValue: sut)!)
 	}
-	
-	//
-	// Naming
-	//
-	
-	// Long Name: better for debugging, since relies on the "actual" value of the card
-	func longName(var trumpSuit: Suit?=nil) -> String {
-		var out = self.rank.dispName()
-		if isBower() {} else if self.isTrump() {
-			trumpSuit = trumpSuit ?? (Suit).Trump
-			out += " of " + trumpSuit!.dispName()
-		} else {
-			out += " of " + self.suit.dispName()
-		}
-		return out
-	}
-	// Human-readable form for 2-character display
-	func shortName(trumpSuit: Suit?=nil) -> String {
-		let S = self.displaySuit.shortName()
-		let R = self.displayRank.shortName()
-		return String(R) + String(S)
-	}
-	
-	// Fulfill CustomStringConvertible
-	public var description: String {
-		return longName()
-	}
-	
 	
 	//
 	// Card functions
@@ -96,12 +68,43 @@ public struct Card: Comparable, CustomStringConvertible {
 	func beats(compCard: Card, compFunction: (Card, Card) -> Bool) -> Bool {
 		return compFunction(compCard, self)
 	}
+}
+
+extension Card: CustomStringConvertible {
+	//
+	// Naming
+	//
 	
+	// Long Name: better for debugging, since relies on the "actual" value of the card
+	func longName(var trumpSuit: Suit?=nil) -> String {
+		var out = self.rank.dispName()
+		if isBower() {} else if self.isTrump() {
+			trumpSuit = trumpSuit ?? (Suit).Trump
+			out += " of " + trumpSuit!.dispName()
+		} else {
+			out += " of " + self.suit.dispName()
+		}
+		return out
+	}
+	// Human-readable form for 2-character display
+	func shortName(trumpSuit: Suit?=nil) -> String {
+		let S = self.displaySuit.shortName()
+		let R = self.displayRank.shortName()
+		return String(R) + String(S)
+	}
+	
+	// Fulfill CustomStringConvertible
+	public var description: String {
+		return longName()
+	}
+}
+
 	//
 	// Pass-through methods to the enums
 	//
 	
 	// Rank
+extension Card {
 	func isAce() -> Bool {
 		return rank.isAce()
 	}
@@ -117,7 +120,8 @@ public struct Card: Comparable, CustomStringConvertible {
 	func isNotVal(cmpVal: Rank) -> Bool {
 		return rank.isNotValue(cmpVal)
 	}
-	
+}
+extension Card {
 	// Suit
 	func isRed() -> Bool {
 		return self.suit.isRed()
@@ -156,40 +160,40 @@ public struct Card: Comparable, CustomStringConvertible {
 }
 
 // For Comparable
-public func <(leftCard: Card, rightCard: Card) -> Bool {
+public func <(L🎴: Card, R🎴: Card) -> Bool {
 	// Swap which of the below lines is commented to change the default sorting method
-	return SuitSorted(leftCard, rightCard)
-	//return RankSorted(leftCard, rightCard)
-	//return DisplaySorted(leftCard, rightCard)
+	return SuitSorted(L🎴, R🎴)
+	//return RankSorted(L🎴, R🎴)
+	//return DisplaySorted(L🎴, R🎴)
 }
-public func ==(leftCard: Card, rightCard: Card) -> Bool {
-	return leftCard.isSameCard(rightCard)
+public func ==(L🎴: Card, R🎴: Card) -> Bool {
+	return L🎴.isSameCard(R🎴)
 }
 
 
 // Better implementations of sorting
-public func SuitSorted(leftCard: Card, _ rightCard: Card) -> Bool {
+public func SuitSorted(L🎴: Card, _ R🎴: Card) -> Bool {
 	// Compare suit first.
-	if leftCard.suit != rightCard.suit {
-		return leftCard.suit < rightCard.suit
+	if L🎴.suit != R🎴.suit {
+		return L🎴.suit < R🎴.suit
 	}
 	// Same suit, need to sort by rank.
-	return leftCard.rank < rightCard.rank
+	return L🎴.rank < R🎴.rank
 }
 // Same as above but with Rank and Suit swapped
-public func RankSorted(leftCard: Card, _ rightCard: Card) -> Bool {
-	if leftCard.rank != rightCard.rank {
-		return leftCard.rank < rightCard.rank
+public func RankSorted(L🎴: Card, _ R🎴: Card) -> Bool {
+	if L🎴.rank != R🎴.rank {
+		return L🎴.rank < R🎴.rank
 	}
-	return leftCard.suit < rightCard.suit
+	return L🎴.suit < R🎴.suit
 }
 
 // Sorts trump cards as if they were members of the suit that was declared trump
-public func DisplaySorted(leftCard: Card, _ rightCard: Card) -> Bool {
-	let lsuit = leftCard.rank == (Rank).LeftBower ? leftCard.displaySuit.oppositeSuit() : leftCard.displaySuit
-	let rsuit = rightCard.rank == (Rank).LeftBower ? rightCard.displaySuit.oppositeSuit() : rightCard.displaySuit
+public func DisplaySorted(L🎴: Card, _ R🎴: Card) -> Bool {
+	let lsuit = L🎴.rank == (Rank).LeftBower ? L🎴.displaySuit.oppositeSuit() : L🎴.displaySuit
+	let rsuit = R🎴.rank == (Rank).LeftBower ? R🎴.displaySuit.oppositeSuit() : R🎴.displaySuit
 	if lsuit != rsuit {
 		return lsuit < rsuit
 	}
-	return leftCard.rank < rightCard.rank
+	return L🎴.rank < R🎴.rank
 }

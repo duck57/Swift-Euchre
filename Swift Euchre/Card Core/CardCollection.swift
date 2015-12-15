@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol CardCollection : RangeReplaceableCollectionType {
+protocol CardCollection : RangeReplaceableCollectionType, CustomStringConvertible {
 	var collective : [Card] { get set }
 }
 

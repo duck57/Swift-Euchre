@@ -11,6 +11,12 @@ import Foundation
 print("Welcome to Swift Euchre!")
 
 
+var players = [Hand]()
+for _ in 1...4 {
+	players.append(Hand.init())
+}
 var deck = makeDoubleEuchreDeck()
-deck.shuffleInPlace()
-print(deck)
+deck.deal(players)
+for hand in players {
+	hand.selectionDisplay()
+}

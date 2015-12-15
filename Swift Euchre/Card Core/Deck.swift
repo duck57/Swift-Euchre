@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Deck: CardCollection, CustomStringConvertible {
+class Deck: CardCollection {
 	
 	// Make Deck
 	var collective = [Card]()
@@ -29,8 +29,8 @@ class Deck: CardCollection, CustomStringConvertible {
 	}
 	
 	// Deal
-	func deal(hands: Hand..., var kitty: Hand?=nil, deadSize: Int?=0) {
-		self.shuffle()
+	func deal(hands: [Hand], var kitty: Hand?=nil, deadSize: Int?=0) {
+		collective.shuffleInPlace()
 		guard deadSize < self.count  else {
 			print("No cards dealt, as reserved card count (\(deadSize)) is more than the deck size (\(self.count)).")
 			return
@@ -48,12 +48,18 @@ class Deck: CardCollection, CustomStringConvertible {
 		}
 		// Shove the remaining cards into the kitty (if provided)
 		guard kitty != nil else { return }
-		for 🃏 in deck {
-			kitty?.append(🃏)
+		for 🎴 in deck {
+			kitty?.append(🎴)
 		}
 	}
-	
-	// Dislpay a deck
+	// Since Swift does not yet have splats
+	func deal(hands: Hand..., kitty: Hand?=nil, deadSize: Int?=0) {
+		deal(hands, kitty: kitty!, deadSize: deadSize!)
+	}
+}
+
+// Dislpay a deck
+extension Deck: CustomStringConvertible {
 	var description: String {
 		let lines = 4
 		let number = self.count / lines
