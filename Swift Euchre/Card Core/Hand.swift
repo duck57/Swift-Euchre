@@ -29,7 +29,17 @@ extension Hand: CustomStringConvertible {
 	func selectionDisplay() {
 		print(self)
 		for i in 0..<self.count {
-			print(i.description + "\t")
+			print(String(format: "%02d", i), terminator: "\t")
 		}
+		print("") // add newline to end of each Hand
 	}
+}
+
+protocol HandPossessor {
+	var hand: Hand { get set }
+	func cardPicker() -> Card
+}
+
+extension HandPossessor {
+	
 }

@@ -39,11 +39,9 @@ class Deck: CardCollection {
 		let loc = deadSize
 		// Give all players an equivalent number of cards
 		while self.count-deadSize! >= hands.count {
-			for hand in hands {
-				// Things like this are elsewhere in the code
-				// If I remove the collective, it complains about the variables being immutable
-				// But leaving in the .collective. seems wasteful
-				hand.collective.append(self.collective.removeAtIndex(loc!))
+			for var hand in hands {
+				// is there a way to treat self like hand and use it as a var instead of a let?
+				hand.append(self.collective.removeAtIndex(loc!))
 			}
 		}
 		// Shove the remaining cards into the kitty (if provided)
@@ -52,10 +50,11 @@ class Deck: CardCollection {
 			kitty?.append(🎴)
 		}
 	}
+	
 	// Since Swift does not yet have splats
-	func deal(hands: Hand..., kitty: Hand?=nil, deadSize: Int?=0) {
-		deal(hands, kitty: kitty!, deadSize: deadSize!)
-	}
+	/*func deal(hands: Hand..., kitty: Hand?, deadSize: Int?) {
+		deal(hands, kitty: kitty, deadSize: deadSize)
+	}*/ // can't even use this anyway, since trying to do so causes the compiler to segfault 11
 }
 
 // Dislpay a deck
