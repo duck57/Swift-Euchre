@@ -67,6 +67,8 @@ public enum Rank: Int {
 			return "2"
 		case .LoAce:
 			return "A"
+		case .Ten:
+			return "⒑"
 		case .Jack:
 			return "J"
 		case .Queen:

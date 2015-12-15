@@ -30,6 +30,10 @@ extension CardCollection  {
 		collective.replaceRange(subRange, with: newElements)
 	}
 	
+	mutating func shuffleInPlace() {
+		collective.shuffleInPlace()
+	}
+	
 	mutating func sortInPlace(sortFun: (Card, Card) -> Bool?=DisplaySorted) {
 		collective.sortInPlace({sortFun($0,$1)!})
 	}
@@ -42,6 +46,14 @@ extension CardCollection  {
 	}
 	mutating func sortForDisplay() {
 		sortInPlace(DisplaySorted)
+	}
+	
+	// for some reason, it complains about card being a let variable if I use
+	// for card in collective { card.makeTrump(trumpSuit) }
+	mutating func convertToTrump(trumpSuit: Suit) {
+		for i in 0..<collective.count {
+			collective[i].makeTrump(trumpSuit)
+		}
 	}
 }
 

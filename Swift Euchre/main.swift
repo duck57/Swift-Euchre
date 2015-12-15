@@ -12,8 +12,5 @@ print("Welcome to Swift Euchre!")
 
 
 var deck = makeDoubleEuchreDeck()
-deck.sortByRank()
-
-for card in deck {
-	print(card)
-}
+deck.shuffleInPlace()
+print(deck)

@@ -186,8 +186,10 @@ public func RankSorted(leftCard: Card, _ rightCard: Card) -> Bool {
 
 // Sorts trump cards as if they were members of the suit that was declared trump
 public func DisplaySorted(leftCard: Card, _ rightCard: Card) -> Bool {
-	if leftCard.displaySuit != rightCard.displaySuit {
-		return leftCard.displaySuit < rightCard.displaySuit
+	let lsuit = leftCard.rank == (Rank).LeftBower ? leftCard.displaySuit.oppositeSuit() : leftCard.displaySuit
+	let rsuit = rightCard.rank == (Rank).LeftBower ? rightCard.displaySuit.oppositeSuit() : rightCard.displaySuit
+	if lsuit != rsuit {
+		return lsuit < rsuit
 	}
 	return leftCard.rank < rightCard.rank
 }

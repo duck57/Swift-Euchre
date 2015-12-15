@@ -8,4 +8,11 @@
 
 import Foundation
 
-var hand = [Card]()
+final class Hand: CardCollection {
+	var collective = [Card]()
+	init() { }
+	
+	func playCard(loc: Int) -> Card {
+		return collective.removeAtIndex(loc)
+	}
+}
