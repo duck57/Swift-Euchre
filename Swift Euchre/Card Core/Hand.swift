@@ -37,7 +37,8 @@ extension Hand: CustomStringConvertible {
 
 protocol HandPossessor {
 	var hand: Hand { get set }
-	func cardPicker() -> Card
+	func playCard() -> Card
+	mutating func sort()
 }
 
 extension HandPossessor {

@@ -12,6 +12,7 @@
 		204482961C2002610045D999 /* Menus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204482951C2002610045D999 /* Menus.swift */; };
 		204482981C2002710045D999 /* Human Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204482971C2002710045D999 /* Human Player.swift */; };
 		2044829A1C2002820045D999 /* Computer Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204482991C2002820045D999 /* Computer Player.swift */; };
+		2044829D1C2128360045D999 /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2044829C1C2128360045D999 /* Table.swift */; };
 		205B86341C1435F8003557D5 /* A_Swift_Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205B86331C1435F8003557D5 /* A_Swift_Test.swift */; };
 		205B86391C143601003557D5 /* CardTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205B862B1C143514003557D5 /* CardTest.swift */; };
 		205B863B1C15413D003557D5 /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205B863A1C15413D003557D5 /* Hand.swift */; };
@@ -44,6 +45,7 @@
 		204482951C2002610045D999 /* Menus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menus.swift; sourceTree = "<group>"; };
 		204482971C2002710045D999 /* Human Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Human Player.swift"; path = "IO/Human/Human Player.swift"; sourceTree = "<group>"; };
 		204482991C2002820045D999 /* Computer Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Computer Player.swift"; path = "IO/Computer/Computer Player.swift"; sourceTree = "<group>"; };
+		2044829C1C2128360045D999 /* Table.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
 		205B862B1C143514003557D5 /* CardTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardTest.swift; path = Testing/CardTest.swift; sourceTree = SOURCE_ROOT; };
 		205B86311C1435F8003557D5 /* A Swift Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "A Swift Test.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		205B86331C1435F8003557D5 /* A_Swift_Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A_Swift_Test.swift; sourceTree = "<group>"; };
@@ -98,12 +100,24 @@
 		203317921C0E6D7200FFD8C0 /* Swift Euchre */ = {
 			isa = PBXGroup;
 			children = (
-				204482931C2000DD0045D999 /* Player.swift */,
-				207CCA061C1FF88F0019E028 /* Controls */,
 				205B863E1C155919003557D5 /* Card Core */,
+				207CCA061C1FF88F0019E028 /* Controls */,
 				203317931C0E6D7200FFD8C0 /* main.swift */,
+				2044829C1C2128360045D999 /* Table.swift */,
+				204482931C2000DD0045D999 /* Player.swift */,
 			);
 			path = "Swift Euchre";
+			sourceTree = "<group>";
+		};
+		2044829B1C2122E50045D999 /* Collections */ = {
+			isa = PBXGroup;
+			children = (
+				207CCA021C1CE9AC0019E028 /* Card Collection.swift */,
+				205B863C1C154145003557D5 /* Deck.swift */,
+				205B863A1C15413D003557D5 /* Hand.swift */,
+				207CCA041C1FF8750019E028 /* Trick.swift */,
+			);
+			name = Collections;
 			sourceTree = "<group>";
 		};
 		205B862A1C1434D9003557D5 /* Testing */ = {
@@ -130,12 +144,9 @@
 			isa = PBXGroup;
 			children = (
 				20FAE5051C12AC2300C36D53 /* Card.swift */,
-				207CCA021C1CE9AC0019E028 /* Card Collection.swift */,
-				205B863C1C154145003557D5 /* Deck.swift */,
-				205B863A1C15413D003557D5 /* Hand.swift */,
+				2044829B1C2122E50045D999 /* Collections */,
 				205B863F1C15593B003557D5 /* Rank.swift */,
 				205B86411C155943003557D5 /* Suit.swift */,
-				207CCA041C1FF8750019E028 /* Trick.swift */,
 			);
 			name = "Card Core";
 			sourceTree = "<group>";
@@ -143,9 +154,9 @@
 		207CCA061C1FF88F0019E028 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
-				204482951C2002610045D999 /* Menus.swift */,
-				204482971C2002710045D999 /* Human Player.swift */,
 				204482991C2002820045D999 /* Computer Player.swift */,
+				204482971C2002710045D999 /* Human Player.swift */,
+				204482951C2002610045D999 /* Menus.swift */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -247,6 +258,7 @@
 				204482981C2002710045D999 /* Human Player.swift in Sources */,
 				207CCA031C1CE9AC0019E028 /* Card Collection.swift in Sources */,
 				2044829A1C2002820045D999 /* Computer Player.swift in Sources */,
+				2044829D1C2128360045D999 /* Table.swift in Sources */,
 				20FAE5061C12AC2300C36D53 /* Card.swift in Sources */,
 				205B863B1C15413D003557D5 /* Hand.swift in Sources */,
 				205B86401C15593B003557D5 /* Rank.swift in Sources */,

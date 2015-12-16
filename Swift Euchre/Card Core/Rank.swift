@@ -18,9 +18,9 @@ public enum Rank: Int {
 	
 	func dispName() -> String {
 		switch self {
-		case .LoAce:
+		case LoAce:
 			return "Ace"
-		case .Deuce:
+		case Deuce:
 			return "Deuce"
 		case Two:
 			return "Two"
@@ -32,25 +32,25 @@ public enum Rank: Int {
 			return "Five"
 		case Six:
 			return "Six"
-		case .Seven:
+		case Seven:
 			return "Seven"
-		case .Eight:
+		case Eight:
 			return "Eight"
-		case .Nine:
+		case Nine:
 			return "Nine"
-		case .Ten:
+		case Ten:
 			return "Ten"
-		case .Jack:
+		case Jack:
 			return "Jack"
-		case .Queen:
+		case Queen:
 			return "Queen"
-		case .King:
+		case King:
 			return "King"
-		case .HiAce:
+		case HiAce:
 			return "Ace"
-		case .LeftBower:
+		case LeftBower:
 			return "Left Bower"
-		case .RightBower:
+		case RightBower:
 			return "Right Bower"
 		default:
 			return ""
@@ -59,27 +59,27 @@ public enum Rank: Int {
 	
 	// Leaving in trumpAware in case it's useful to have that hard-coded here.
 	func shortName(trumpAware: Bool?=nil) -> Character {
-		if trumpAware == true && (self == .LeftBower || self  == .RightBower) {
+		if trumpAware == true && (self == LeftBower || self  == RightBower) {
 			return "J"
 		}
 		switch self {
-		case .Deuce:
+		case Deuce:
 			return "2"
-		case .LoAce:
+		case LoAce:
 			return "A"
-		case .Ten:
-			return "⒑"
-		case .Jack:
+		case Ten:
+			return "⒑" // need this or some other non-ASCII representation of 10 to prevent runtime errors
+		case Jack:
 			return "J"
-		case .Queen:
+		case Queen:
 			return "Q"
-		case .King:
+		case King:
 			return "K"
-		case .HiAce:
+		case HiAce:
 			return "A"
-		case .LeftBower:
+		case LeftBower:
 			return "◀"
-		case .RightBower:
+		case RightBower:
 			return "▶"
 		default:
 			return Character(String(self.rawValue))

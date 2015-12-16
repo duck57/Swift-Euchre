@@ -19,5 +19,7 @@ protocol Player: HandPossessor {
 }
 
 extension Player {
-	
+	func loc2pos() -> String {
+		return ""
+	}
 }

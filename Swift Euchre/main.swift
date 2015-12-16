@@ -11,12 +11,17 @@ import Foundation
 print("Welcome to Swift Euchre!")
 
 
-var players = [Hand]()
-for _ in 1...4 {
-	players.append(Hand.init())
-}
+var players = [Player]()
+players.append(ComputerPlayer.init(playerName: "Mike", team: 0, loc: 0))
+players.append(ComputerPlayer.init(playerName: "Bob", team: 1, loc: 1))
+players.append(HumanPlayer.init(playerName: "Chris", team: 0, loc: 2))
+players.append(ComputerPlayer.init(playerName: "Charlie", team: 1, loc: 3))
+
 var deck = makeDoubleEuchreDeck()
 deck.deal(players)
-for hand in players {
-	hand.selectionDisplay()
+let i = Int(arc4random_uniform(6))
+for var player in players {
+	player.hand.convertToTrump(Suit(rawValue: i)!)
+	player.sort()
+	player.hand.selectionDisplay()
 }

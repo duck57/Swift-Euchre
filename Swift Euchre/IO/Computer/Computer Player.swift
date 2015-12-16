@@ -9,5 +9,25 @@
 import Foundation
 
 class ComputerPlayer: Player {
+	var hand: Hand
+	var name: String
+	var pos: String
+	var team: Int
+	var loc: Int
 	
+	required init(playerName: String, team playerTeam: Int, loc location: Int) {
+		name = playerName
+		team = playerTeam
+		loc = location
+		hand = Hand.init()
+		pos = ""
+	}
+	
+	func playCard() -> Card {
+		return hand.removeAtIndex(0)
+	}
+	
+	func sort() {
+		hand.sortBySuit()
+	}
 }

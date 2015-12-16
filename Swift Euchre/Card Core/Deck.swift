@@ -29,25 +29,34 @@ class Deck: CardCollection {
 	}
 	
 	// Deal
-	func deal(hands: [Hand], var kitty: Hand?=nil, deadSize: Int?=0) {
+	func deal(hands: [Player], var kitty: Hand?=nil, deadSize: Int?=0) {
 		collective.shuffleInPlace()
+		// Make sure the deal will work
 		guard deadSize < self.count  else {
 			print("No cards dealt, as reserved card count (\(deadSize)) is more than the deck size (\(self.count)).")
 			return
 		}
+		
 		// Set aside a guaranteed number of cards that will not be dealt
 		let loc = deadSize
+		
 		// Give all players an equivalent number of cards
 		while self.count-deadSize! >= hands.count {
-			for var hand in hands {
+			for var player in hands {
 				// is there a way to treat self like hand and use it as a var instead of a let?
-				hand.append(self.collective.removeAtIndex(loc!))
+				player.hand.append(self.collective.removeAtIndex(loc!))
 			}
 		}
+		
 		// Shove the remaining cards into the kitty (if provided)
 		guard kitty != nil else { return }
 		for 🎴 in deck {
 			kitty?.append(🎴)
+		}
+		
+		// Everyone sort your hands!
+		for var player in hands {
+			player.sort()
 		}
 	}
 	
@@ -86,6 +95,25 @@ func makePinochleDeck() -> Deck {
 	return makeDoubleEuchreDeck()
 }
 
-func makeStandardDeck() -> Deck {
-	return Deck.init(lowRank: (Rank).Two, highRank: (Rank).HiAce)
+func makeStandardDeck(number: Int?=1) -> Deck {
+	return Deck.init(lowRank: (Rank).Two, highRank: (Rank).HiAce, number: number!)
+}
+
+
+enum deckType {
+	case Poker, Standard, Euchre, DoubleEuchre, Pinochle, other
+	func makeDeck() -> Deck {
+		switch self {
+		case Poker:
+			return makeStandardDeck()
+		case Standard:
+			return makeStandardDeck()
+		case DoubleEuchre:
+			return makeDoubleEuchreDeck()
+		case Pinochle:
+			return makePinochleDeck()
+		default:
+			return Deck.init()
+		}
+	}
 }
