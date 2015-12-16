@@ -42,7 +42,7 @@
 		203317901C0E6D7200FFD8C0 /* Swift Euchre */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "Swift Euchre"; sourceTree = BUILT_PRODUCTS_DIR; };
 		203317931C0E6D7200FFD8C0 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		204482931C2000DD0045D999 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
-		204482951C2002610045D999 /* Menus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Menus.swift; sourceTree = "<group>"; };
+		204482951C2002610045D999 /* Menus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Menus.swift; path = IO/Menus.swift; sourceTree = "<group>"; };
 		204482971C2002710045D999 /* Human Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Human Player.swift"; path = "IO/Human/Human Player.swift"; sourceTree = "<group>"; };
 		204482991C2002820045D999 /* Computer Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Computer Player.swift"; path = "IO/Computer/Computer Player.swift"; sourceTree = "<group>"; };
 		2044829C1C2128360045D999 /* Table.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
