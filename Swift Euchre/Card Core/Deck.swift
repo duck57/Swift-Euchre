@@ -48,15 +48,18 @@ class Deck: CardCollection {
 			}
 		}
 		
-		// Shove the remaining cards into the kitty (if provided)
-		guard kitty != nil else { return }
-		for 🎴 in deck {
-			kitty?.append(🎴)
-		}
-		
 		// Everyone sort your hands!
 		for var player in hands {
 			player.sort()
+		}
+		
+		// Shove the remaining cards into the kitty (if provided)
+		/* If a kitty is not provided, all remaining cards will remain in the deck
+		and be visible to AI.  To have a separate kitty and discard piles, call this function twice
+		*/
+		guard kitty != nil else { return }
+		for _ in self {
+			kitty?.append(self.collective.removeFirst())
 		}
 	}
 	

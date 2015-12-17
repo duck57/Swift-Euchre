@@ -12,12 +12,16 @@ class Table {
 	var Players: [Player] = []
 	var score: [Int] = []
 	var deck: Deck
-	var trick: Trick? = nil
-	var kitty: Hand? = nil
-	var trumpSuit: Suit? = nil
+	var trick: Trick?
+	var kitty: Hand?
+	var trumpSuit: Suit?
 	
 	init(gameType: deckType) {
 		deck = gameType.makeDeck()
+	}
+	
+	func deal() {
+		deck.deal(Players)
 	}
 	
 }
