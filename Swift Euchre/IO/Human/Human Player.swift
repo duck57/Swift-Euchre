@@ -14,6 +14,7 @@ class HumanPlayer: Player {
 	var pos: String
 	var team: Int
 	var loc: Int
+	var tricks: Int = 0
 	
 	required init(playerName: String, team playerTeam: Int, loc location: Int) {
 		name = playerName

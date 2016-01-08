@@ -14,6 +14,7 @@ protocol Player: HandPossessor {
 	var pos: String { get }
 	var team: Int { get set }
 	var loc: Int { get }
+	var tricks: Int { get set }
 	
 	init(playerName: String, team: Int, loc: Int)
 }

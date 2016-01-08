@@ -13,10 +13,10 @@ class Trick: CardCollection {
 	required init() {  }
 	
 	// Return the position of the winning card
-	func score(LoNo: (Card, Card) -> Bool, scoringfunction: (Card, Card, (Card, Card) -> Bool?) -> Bool?=beats) -> Int {
+	func score(alt: Bool, alternateScoring: (Card, Card) -> Bool?=LoNo, scoringfunction: (Card, Card, (Card, Card) -> Bool?) -> Bool?=beats) -> Int {
 		var winPos = 0
 		for rLoc in 1..<self.count-1 {
-			if beats(self[winPos], self[rLoc], SortFunction: LoNo) {
+			if beats(self[winPos], self[rLoc], SortFunction: alt ? LoNo : SuitSorted) { // since I can't use alt ? LoNo : nil for some reason
 				winPos = rLoc
 			}
 		}
@@ -27,14 +27,14 @@ class Trick: CardCollection {
 		empty(nil)
 	}
 	
-	func returnToDeck(loc pos: Int?=nil, var deck: Deck) -> Card? {
+	func returnToDeck(loc pos: Int?=nil, var deck: Deck?) -> Card? {
 		if let pos = pos {
 			guard pos < self.count else {
 				print("Index \(pos) is greater than trick size (\(self.count))")
 				return nil
 			}
 			let 🎴 = collective.removeAtIndex(pos)
-			deck.append(🎴)
+			deck!.append(🎴)
 			return 🎴
 		} else {
 			return returnToDeck(loc: 0, deck: deck)
@@ -42,8 +42,8 @@ class Trick: CardCollection {
 	}
 	
 	func empty(deck: Deck?) {
-		for _ in self {
-			returnToDeck(deck: deck!)
+		for _ in 1...self.count {
+			returnToDeck(loc: 0, deck: deck)
 		}
 	}
 	
